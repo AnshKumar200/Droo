@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Navbar = () => {
+const NavbarHome = () => {
     return (
         <div className="flex text-white w-full items-center z-1">
             <Link href='/' className="flex items-center gap-3">
-                <Image src='/logo3.png' width={50} height={100} alt="logo" />
+                <Image src='/logoW.png' width={50} height={100} alt="logo" />
                 <div className="text-2xl">DROO</div>
             </Link>
             <div className="flex ml-auto gap-5">
@@ -17,4 +17,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarHome;
