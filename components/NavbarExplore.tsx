@@ -9,7 +9,7 @@ const NavbarExplore = () => {
                 <div className="text-2xl">DROO</div>
             </Link>
             <div className="flex ml-auto gap-5">
-                <Link href='/about' className="px-10 py-2 backdrop-blur-2xl border border-gray-500 hover:bg-gray-700 hover:text-white transition-all duration-300 ease-in-out rounded-full">About</Link>
+                <Link href='/about' className="px-10 py-2 backdrop-blur-2xl border border-gray-500 hover:bg-gray-700 hover:text-white transition-all duration-300 ease-in-out rounded-full">Profile</Link>
             </div>
         </div>
     )
