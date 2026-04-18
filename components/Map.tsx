@@ -18,30 +18,27 @@ function RecenterMap({ position }: { position: [number, number] }) {
     return null
 }
 
-const Map = () => {
-    const [position, setPosition] = useState<[number, number] | null>([28.6329401, 77.2194201])
-    const [locationError, setLocationError] = useState<string | null>(null)
+const Map = ({ initialPosition }: { initialPosition?: [number, number] | null }) => {
+    const [position, setPosition] = useState<[number, number] | null>(
+        initialPosition ?? [28.6329401, 77.2194201]
+    );
 
     useEffect(() => {
+        if (initialPosition) return;
         navigator.geolocation.getCurrentPosition(
-            (pos) => {
-                console.log('got ittt!')
-                setPosition([pos.coords.latitude, pos.coords.longitude])
-            },
-            (err) => {
-                console.error('location unavailable: ', err)
-                setLocationError('Could not get your location')
-            })
-    }, [])
+            (pos) => setPosition([pos.coords.latitude, pos.coords.longitude]),
+            (err) => console.error('location unavailable:', err)
+        );
+    }, []);
 
     return (
-        <div className="relative h-full w-full">
-            {!position && !locationError && (
+        <div className="relative w-full h-full bg-red-200">
+            {!position && (
                 <div className="" style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', zIndex: 1000, background: 'white', padding: '6px 12px', borderRadius: 8, fontSize: 13 }}>
                     Getting your location...
                 </div>
             )}
-            <MapContainer center={[20, 0]} zoom={2} style={{ height: '100%', width: '100%' }}>
+            <MapContainer center={[20, 0]} zoom={2} className="w-full h-full">
                 <TileLayer
                     url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                     attribution='&copy; <a href="https://carto.com/">CARTO</a>'

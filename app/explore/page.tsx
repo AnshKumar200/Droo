@@ -1,12 +1,15 @@
 import NavbarExplore from "@/components/NavbarExplore";
-import Map from "@/components/Map";
+import MapReveal from "@/components/MapReveal";
+import RoutesList from "@/components/RoutesList";
 
 const Explore = () => {
     return (
-        <div className="flex flex-col items-center pt-10 flex-1">
+        <div className="flex flex-col pt-10 flex-1 gap-5">
             <NavbarExplore />
-            <div>explore</div>
-            <Map />
+            <div className="relative">
+                <RoutesList />
+                <MapReveal />
+            </div>
         </div>
     )
 }
