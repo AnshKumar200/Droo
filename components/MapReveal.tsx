@@ -14,12 +14,16 @@ const convertCoordinatesToXY = (lat: number, lng: number, zoom: number) => {
 
 const getTiles = (x: number, y: number, zoom: number) => {
     return [
+        `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y - 2}.png`, // top
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y - 1}.png`, // top
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y}.png`,     // center
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y + 1}.png`, // bottom
+        `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x}/${y + 2}.png`, // bottom
+        `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x + 1}/${y - 2}.png`, // top
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x + 1}/${y - 1}.png`, // top
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x + 1}/${y}.png`,     // center
         `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x + 1}/${y + 1}.png`, // bottom
+        `https://a.basemaps.cartocdn.com/light_all/${zoom}/${x + 1}/${y + 2}.png`, // bottom
     ];
 }
 
@@ -70,23 +74,23 @@ const MapReveal = () => {
     const bottomTiles = getTiles(x + 2, y, 15);
 
     return (
-        <div className="h-full bg-blue-300 w-full items-center justify-center flex flex-col">
+        <div className="bg-blue-300 w-full items-center justify-center flex flex-col">
             <div className="flex bg-red-300 w-fit animate-[scale-map_1s_ease-in-out]" style={{ animationPlayState: phase === "scale" ? "running" : "paused" }}>
                 <div className="relative animate-[move-map_1s_ease-in-out] z-2" style={{ "--dir": 1, animationPlayState: phase === "opening" ? "running" : "paused" } as React.CSSProperties}>
-                    <div className="grid grid-rows-3 grid-cols-2 grid-flow-col">
+                    <div className="grid grid-rows-5 grid-cols-2 grid-flow-col">
                         {topTiles.map((tile, i) => (
                             <img key={i} src={tile} />
                         ))}
                     </div>
                     <div className="pointer-events-none absolute top-0 right-0 translate-x-16 h-full w-16 bg-linear-to-l from-transparent to-black/5" />
                 </div>
-                <div className="grid grid-rows-3 grid-cols-2 grid-flow-col z-0">
+                <div className="grid grid-rows-5 grid-cols-2 grid-flow-col z-0">
                     {middleTiles.map((tile, i) => (
                         <img key={i} src={tile} />
                     ))}
                 </div>
                 <div className="relative animate-[move-map_1s_ease-in-out] z-2" style={{ "--dir": -1, animationPlayState: phase === "opening" ? "running" : "paused" } as React.CSSProperties}>
-                    <div className="grid grid-rows-3 grid-cols-2 grid-flow-col z-1">
+                    <div className="grid grid-rows-5 grid-cols-2 grid-flow-col z-1">
                         {bottomTiles.map((tile, i) => (
                             <img key={i} src={tile} />
                         ))}

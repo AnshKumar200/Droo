@@ -6,10 +6,7 @@ const Explore = () => {
     return (
         <div className="flex flex-col pt-10 flex-1 gap-5">
             <NavbarExplore />
-            <div className="relative">
-                <RoutesList />
-                <MapReveal />
-            </div>
+            <MapReveal />
         </div>
     )
 }

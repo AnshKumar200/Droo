@@ -23,7 +23,7 @@ export default function RootLayout({
                 <div className="flex-1 flex">
                     {children}
                 </div>
-                <div className="mt-auto">
+                <div className="fixed bottom-5 left-5 z-99 right-10">
                     <Footer />
                 </div>
             </body>
