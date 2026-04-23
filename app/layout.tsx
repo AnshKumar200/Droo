@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`min-h-screen text-lg sm:text-xl ${outfit.className} w-11/12 mx-auto flex flex-col`}>
+            <body className={`min-h-screen text-lg ${outfit.className} w-11/12 mx-auto flex flex-col`}>
                 <div className="flex-1 flex">
                     {children}
                 </div>
